@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>AngularJS Aplication</title>
+	<meta charset="UTF-8">
+
+	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
+	<script type="text/javascript" src="vendor/angularjs/angular.js"></script> 
+
+	<script type="text/javascript" src="js/myApp.js"></script>
+	<script type="text/javascript" src="js/controller/MeuController.js"></script>
+
+</head>
+<body ng-controller="MeuController">
+	<div class="container">
+		<div class="jumbotron">
+		<h1 type="submit" >{{isEdit ? 'Atualizar' : 'Cadastrar'}}</h1>
+		<div class="row">
+			<div class="col-xs-12">
+				<form ng-submit="enviaDados(pessoa)">
+					<div class="col-xs-4">
+						<div class="form-group">
+							<label for="nome">Nome</label>
+							<input required minlength="3" ng-model="pessoa.nome" type="text" class="form-control" placeholder="Insira seu nome"> 
+						</div>
+
+						<div class="form-group">
+							<label for="nome">Telefone</label>
+							<input required minlength="8" ng-model="pessoa.telefone" type="text"  class="form-control" placeholder="Insira seu telefone"> 
+						</div>
+
+						<div class="form-group">
+							<label for="nome">E-mail</label>
+							<input required  ng-model="pessoa.email" type="email" class="form-control" placeholder="Insira seu e-mail"> 
+						</div>
+
+						<button ng-show="!!isVisible" type="submit" ng-click="cancelaDados(Sindex)" class="btn btn-danger pull-right">Cancelar</button>
+
+						<button type="submit" class="btn btn-success pull-right">{{isEdit ? 'Salvar' : 'Adicionar'}}</button>
+						<br> <br>
+						<h3 type="submit" >{{isEdit ? 'Aviso: Os dados são salvos automaticamente.' : ''}}</h3>
+					</div>
+				</form>
+
+				<div class="col-xs-8">
+				<br>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th>Telefone</th>
+							<th>E-mail</th>
+							<th>Funções</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr ng-repeat="item in dados">
+							<td>{{item.nome}}</td>
+							<td>{{item.telefone}}</td>
+							<td>{{item.email}}</td></td>
+							<td>
+								<button ng-click="editarDados(item, $index)" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button> 
+
+								<button ng-click="excluirDados($index)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+							</td>
+						</tr>				
+					</tbody>
+				</table>
+				</div>	
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+</html>
